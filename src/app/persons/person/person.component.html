@@ -1,0 +1,194 @@
+<form class="form" #formtemp="ngForm" (submit)="add(formtemp)">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <mat-form-field>
+          <mat-label>
+            <mat-icon>portrait</mat-icon>
+            Nombre</mat-label
+          >
+          <input
+            required
+            matInput
+            id="name"
+            type="text"
+            minlength="3"
+            placeholder="Nombre"
+            [(ngModel)]="contact.name"
+            name="name"
+            #name="ngModel"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Apellidos</mat-label>
+          <input
+            required
+            matInput
+            type="text"
+            minlength="3"
+            placeholder="Apellidos"
+            name="surname"
+            [(ngModel)]="contact.surname"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>
+            <mat-icon>edit</mat-icon>
+            Edad</mat-label
+          >
+          <input
+            required
+            matInput
+            type="number"
+            max="125"
+            min="0"
+            placeholder="Edad"
+            name="age"
+            [(ngModel)]="contact.age"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label> DNI</mat-label>
+          <input
+            required
+            matInput
+            type="text"
+            placeholder="8 números + 1 letra"
+            pattern="[0-9]{8}[A-Za-z]{1}"
+            name="dni"
+            [(ngModel)]="contact.dni"
+          />
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        <div class="add-bottom-padding bottom-container">
+          <mat-form-field>
+            <mat-label> Género</mat-label>
+            <mat-select
+              placeholder="Género"
+              name="gender"
+              [(ngModel)]="contact.gender"
+            >
+              <ng-container *ngFor="let gender of genderList">
+                <mat-option value="{{ gender.value }}">{{
+                  gender.value
+                }}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="bottom-container">
+          <mat-form-field>
+            <mat-label>
+              <mat-icon>palette</mat-icon>
+              Color Favorito</mat-label
+            >
+            <input
+              required
+              matInput
+              type="text"
+              minlength="3"
+              placeholder="Color favorito"
+              name="favouriteColour"
+              [(ngModel)]="contact.favouriteColour"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
+              <mat-icon>cake</mat-icon>
+              Fecha de Cumpleaños</mat-label
+            >
+            <input
+              required
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Fecha Cumpleaños"
+              name="birthday"
+              [(ngModel)]="contact.birthday"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
+              <mat-icon> local_pizza</mat-icon>
+              Notas</mat-label
+            >
+            <input
+              matInput
+              type="text"
+              placeholder="Notas"
+              name="notes"
+              [(ngModel)]="contact.notes"
+            />
+          </mat-form-field>
+        </div>
+        <div class="button-row">
+          <button
+            mat-raised-button
+            type="submit"
+            [disabled]="formtemp.invalid"
+            class="button-green"
+          >
+            <mat-icon>person_add</mat-icon>
+            Añadir
+          </button>
+          
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>
+<mat-divider></mat-divider>
+<mat-card class="card">
+  <mat-card-title> Contacto</mat-card-title>
+  <mat-card-content class="card-content">
+    <p>Nombre: {{ contact.name }}</p>
+    <p>Apellidos: {{ contact.surname }}</p>
+    <p>Edad: {{ contact.age }}</p>
+    <p>DNI: {{ contact.dni }}</p>
+    <p>Cumpleaños: {{ contact.birthday }}</p>
+    <p>Color Favorito: {{ contact.favouriteColour }}</p>
+    <p>Género: {{ contact.gender }}</p>
+    <p>Notas: {{ contact.notes }}</p>
+  </mat-card-content>
+</mat-card>
+<mat-divider></mat-divider>
+<mat-card class="card">
+  <mat-card-title>Lista de contacto</mat-card-title>
+  <mat-list>
+    <mat-list-item *ngFor="let cont of contacts; let i = index">
+      <h3 class="h3 person">{{ cont.name }} {{ cont.surname }}</h3>
+      <p class="person">{{ cont.age }}</p>
+      <p class="person">{{ cont.dni }}</p>
+      <p class="person">{{ cont.birthday }}</p>
+      <p class="person">{{ cont.favouriteColour }}</p>
+      <p class="person">{{ cont.gender }}</p>
+      <p class="person">{{ cont.notes }}</p>
+
+      <button
+        class="button list-button button-green"
+        mat-flat-button
+        (click)="update(i)"
+      >
+        <mat-icon>create</mat-icon>
+        Actualizar
+      </button>
+      <button
+        class="button list-button"
+        mat-flat-button
+        color="warn"
+        (click)="delete(i)"
+      >
+        <mat-icon>clear</mat-icon>
+        Borrar
+      </button>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+</mat-card>

@@ -1,0 +1,19 @@
+.person,
+.list-button,
+.gender {
+  margin-right: 15px;
+}
+
+.bottom-container {
+  margin-bottom: 20px;
+}
+
+.button-green {
+  background-color: greenyellow;
+}
+
+.card-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 30px 30px;
+}
