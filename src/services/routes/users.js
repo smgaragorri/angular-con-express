@@ -12,7 +12,9 @@ const valid_user = [
   )
     .isAlpha((locale = "es-ES"), { ignore: "- /" })
     .custom((value) => {
-      return value.match(/^[a-zA-Z]{3,}$/);
+      return value.match(
+        /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]{3,}$/
+      );
     }),
   // Validación: Apellidos
   check(
@@ -21,7 +23,9 @@ const valid_user = [
   )
     .isAlpha((locale = "es-ES"), { ignore: "- /" })
     .custom((value) => {
-      return value.match(/^[a-zA-Z]{3,}$/);
+      return value.match(
+        /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]{3,}$/
+      );
     }),
   // Validación: Edad
   check("age", "La edad indicada debe estar comprendida entre 0 y 125").isFloat(
@@ -46,7 +50,9 @@ const valid_user = [
   )
     .isAlpha((locale = "es-ES"), { ignore: "- /" })
     .custom((value) => {
-      return value.match(/^[a-zA-Z]{3,}$/);
+      return value.match(
+        /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]{3,}$/
+      );
     }),
   // Validación: sexo
   check(
